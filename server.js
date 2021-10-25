@@ -43,6 +43,12 @@ app.get('/', function(req, res) {
     res.send("<style>html {background: black;}</style><h1 style='font-size:60px;color:white;margin:auto;display:block;width:max-content;height:max-content;margin-top:40%;margin-bottom:50%;font-family:Roboto,serif;'>Server</h1>"); //Display the response on the website
 });
 
+app.get('/test', async function(req, res) {
+    res.send({"Vaild":response});
+    res.send("HELLO");
+})
+
+
 app.get('/auth', async function(req, res) {
     let response = await checkSignatureValidity(req.signer, req.signatureHash);
     res.send({"Vaild":response});
