@@ -50,6 +50,7 @@ app.get('/', function(req, res) {
 
 app.post('/test', async function(req, res) {
     console.log(req.body);
+    console.log(req.body.Signature);
     var requestData = JSON.parse(req.body);
     res.send("HELLO");
 })
