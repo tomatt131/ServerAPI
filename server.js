@@ -52,14 +52,13 @@ app.use(express.json({
 }))
 app.post('/test', async function(req, res) {
     console.log(req.body);
-    console.log(JSON.parse(req).Signature);
+    console.log(req.body.Vaild);
     res.send("HELLO");
 })
 
 
 app.post('/auth', async function(req, res) {
     console.log(req.body);
-    let postData = JSON.parse(req);
     let response = await checkSignatureValidity(req.body.Signer, req.body.SignatureHash);
     res.send({"Vaild":response});
 })
