@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const Web3 = require('web3');
+const bodyParser = require('body-parser');
 //////////////////////////////////////////////
 
 
@@ -37,6 +38,9 @@ async function checkSignatureValidity(expectedAddress, signatureHash){
 //////////////////////////////////////////////
 app = express();
 app.use(cors());
+app.use(bodyParser.urlencoded({
+    extended: true
+}));
 app.options('*', cors());
 
 app.get('/', function(req, res) {
@@ -54,6 +58,7 @@ app.post('/auth', async function(req, res) {
     let response = await checkSignatureValidity(req.signer, req.signatureHash);
     res.send({"Vaild":response});
 })
+
 
 app.set('port', process.env.PORT || 3000);
 app.listen(app.get('port'), function() {
