@@ -39,9 +39,7 @@ async function checkSignatureValidity(expectedAddress, signatureHash){
 //////////////////////////////////////////////
 app = express();
 
-app.use(bodyParser.urlencoded({
-    extended: false
-}));
+
 app.use(cors({origin: '*'}));
 
 app.get('/', function(req, res) {
