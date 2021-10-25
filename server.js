@@ -17,9 +17,10 @@ async function checkSignatureValidity(expectedAddress, signatureHash){
     let web3 = new Web3(new Web3.providers.HttpProvider('https://bsc-dataseed.binance.org/'));
     let serverStamp = getCurrentUTCTime();
     let match = false;
-    console.log("server", serverStamp);
+    console.log("server", serverStamp, signatureHash, expectedAddress);
     for (let i = 0; i < 16; i++) {
         serverStamp -= 1;
+
         let recoveredSigner = ethers.utils.verifyMessage(""+serverStamp, signatureHash);
         console.log("recovered", recoveredSigner, expectedAddress);
         if (recoveredSigner.toLowerCase() == expectedAddress.toLowerCase()) {
