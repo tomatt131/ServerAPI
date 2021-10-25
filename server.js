@@ -46,6 +46,7 @@ app.get('/', function(req, res) {
 app.get('/test', async function(req, res) {
     res.send({"Vaild":response});
     res.send("HELLO");
+    console.log(req)
 })
 
 
