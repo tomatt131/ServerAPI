@@ -6,7 +6,6 @@ const ethers = require('ethers');
 //////////////////////////////////////////////
 
 
-
 function getCurrentUTCTime() {
     let currentDate = new Date();
     let timeStamp = parseInt("" + currentDate.getUTCDate() + currentDate.getUTCMonth() + currentDate.getUTCFullYear() + currentDate.getUTCHours() + currentDate.getUTCMinutes() + currentDate.getUTCSeconds());
