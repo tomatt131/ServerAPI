@@ -9,7 +9,6 @@ const bodyParser = require('body-parser');
 function getCurrentUTCTime() {
     let currentDate = new Date();
     let timeStamp = parseInt("" + currentDate.getUTCDate() + currentDate.getUTCMonth() + currentDate.getUTCFullYear() + currentDate.getUTCHours() + currentDate.getUTCMinutes() + currentDate.getUTCSeconds());
-    console.log(timeStamp);
     return timeStamp
 }
 
@@ -20,7 +19,7 @@ async function checkSignatureValidity(expectedAddress, signatureHash){
     console.log("server", serverStamp);
     for (let i = 0; i < 16; i++) {
         serverStamp -= 1;
-        let recoveredSigner = await web3.eth.personal.ecRecover(""+serverStamp, signatureHash);
+        let recoveredSigner = web3.eth.accounts.recover(""+serverStamp, signatureHash);
         if (recoveredSigner == expectedAddress.toLowerCase()) {
             console.log("Signature is valid");
             match = true;
