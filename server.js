@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const Web3 = require('web3');
 const bodyParser = require('body-parser');
+const ethers = require('ethers.js');
 //////////////////////////////////////////////
 
 
@@ -19,7 +20,8 @@ async function checkSignatureValidity(expectedAddress, signatureHash){
     console.log("server", serverStamp);
     for (let i = 0; i < 16; i++) {
         serverStamp -= 1;
-        let recoveredSigner = web3.eth.accounts.recover(""+serverStamp, signatureHash);
+        let recoveredSigner = ethers.utils.verifyMessage(""+serverStamp, signatureHash);
+        console.log("recovered", recoveredSigner, expectedAddress);
         if (recoveredSigner.toLowerCase() == expectedAddress.toLowerCase()) {
             console.log("Signature is valid");
             match = true;
