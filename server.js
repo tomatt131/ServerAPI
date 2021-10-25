@@ -51,13 +51,12 @@ app.get('/', function(req, res) {
 app.post('/test', async function(req, res) {
     console.log(req.body);
     console.log(req.body.Signature);
-    var requestData = JSON.parse(req.body);
     res.send("HELLO");
 })
 
 
 app.post('/auth', async function(req, res) {
-    let response = await checkSignatureValidity(req.signer, req.signatureHash);
+    let response = await checkSignatureValidity(req.body.Signer, req.body.SignatureHash);
     res.send({"Vaild":response});
 })
 
