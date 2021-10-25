@@ -41,6 +41,7 @@ app.use(cors());
 app.use(bodyParser.urlencoded({
     extended: true
 }));
+app.use(bodyParser.json());
 app.options('*', cors());
 
 app.get('/', function(req, res) {
