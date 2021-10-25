@@ -20,7 +20,7 @@ async function checkSignatureValidity(expectedAddress, signatureHash){
     for (let i = 0; i < 16; i++) {
         serverStamp -= 1;
         let recoveredSigner = web3.eth.accounts.recover(""+serverStamp, signatureHash);
-        if (recoveredSigner == expectedAddress.toLowerCase()) {
+        if (recoveredSigner.toLowerCase() == expectedAddress.toLowerCase()) {
             console.log("Signature is valid");
             match = true;
             return true
