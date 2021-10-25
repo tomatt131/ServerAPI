@@ -41,6 +41,7 @@ app.use(bodyParser.urlencoded({
     extended: true
 }));
 app.use(bodyParser.json());
+app.use(cors({origin: '*'}));
 // Add headers before the routes are defined
 app.use(function (req, res, next) {
 
@@ -72,7 +73,7 @@ app.post('/test', async function(req, res) {
 })
 
 
-app.post('/auth', async function(req, res) {
+app.post('/auth', async function(req, res, next) {
     let response = await checkSignatureValidity(req.body.Signer, req.body.SignatureHash);
     res.send({"Vaild":response});
 })
