@@ -44,8 +44,8 @@ app.get('/', function(req, res) {
 });
 
 app.get('/test', async function(req, res) {
-    res.send("HELLO");
     console.log(req)
+    res.send("HELLO");
 })
 
 
