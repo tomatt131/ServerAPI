@@ -16,7 +16,7 @@ async function checkSignatureValidity(expectedAddress, signatureHash){
     let web3 = new Web3(new Web3.providers.HttpProvider('https://bsc-dataseed.binance.org/'));
     let serverStamp = getCurrentUTCTime();
     let match = false;
-    console.log("server", serverStamp, "user", userStamp);
+    console.log("server", serverStamp);
     for (let i = 0; i < 16; i++) {
         serverStamp -= 1;
         let recoveredSigner = await web3.eth.personal.ecRecover(""+serverStamp, signatureHash);
