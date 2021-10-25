@@ -44,7 +44,6 @@ app.get('/', function(req, res) {
 });
 
 app.get('/test', async function(req, res) {
-    res.send({"Vaild":500});
     res.send("HELLO");
     console.log(req)
 })
