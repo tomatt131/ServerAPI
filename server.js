@@ -47,6 +47,9 @@ app.get('/', function(req, res) {
 });
 
 app.use(bodyParser.json())
+app.use(express.json({
+    type: ['application/json', 'text/plain']
+}))
 app.post('/test', async function(req, res) {
     console.log(req.body);
     console.log(req.body.Signature);
