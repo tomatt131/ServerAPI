@@ -2,7 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const Web3 = require('web3');
 const bodyParser = require('body-parser');
-const ethers = require('ethers.js');
+const ethers = require('ethers');
 //////////////////////////////////////////////
 
 
