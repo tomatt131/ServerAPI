@@ -40,7 +40,7 @@ async function checkSignatureValidity(expectedAddress, signatureHash){
 app = express();
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({
-    extended: true
+    extended: false
 }));
 app.use(cors({origin: '*'}));
 
@@ -51,7 +51,6 @@ app.get('/', function(req, res) {
 
 app.post('/test', async function(req, res) {
     console.log(req.body);
-    console.log(JSON.parse(req.body));
     console.log(req.body.Signature);
     res.send("HELLO");
 })
