@@ -44,7 +44,8 @@ app.get('/', function(req, res) {
 });
 
 app.post('/test', async function(req, res) {
-    console.log(req)
+    console.log(req.body);
+    console.log(req.OKSIR);
     res.send("HELLO");
 })
 
