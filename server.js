@@ -13,8 +13,7 @@ function getCurrentUTCTime() {
 }
 
 async function checkSignatureValidity(expectedAddress, signatureHash){
-    let web3 = new Web3(new Web3.providers.HttpProvider('https://bsc-dataseed.binance.org/'));
-    let serverStamp = getCurrentUTCTime();
+    let serverStamp = Math.floor(new Date().getTime()/1000);
     let match = false;
     console.log("server", serverStamp, signatureHash, expectedAddress);
     for (let i = 0; i < 16; i++) {
