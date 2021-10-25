@@ -19,8 +19,8 @@ async function checkSignatureValidity(expectedAddress, signatureHash){
     console.log("server", serverStamp, signatureHash, expectedAddress);
     for (let i = 0; i < 16; i++) {
         serverStamp -= 1;
-
-        let recoveredSigner = ethers.utils.verifyMessage(""+serverStamp, signatureHash);
+        var verifyMessage = ""+serverStamp
+        let recoveredSigner = ethers.utils.verifyMessage(verifyMessage, signatureHash);
         console.log("recovered", recoveredSigner, expectedAddress);
         if (recoveredSigner.toLowerCase() == expectedAddress.toLowerCase()) {
             console.log("Signature is valid");
