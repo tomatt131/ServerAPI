@@ -37,12 +37,13 @@ async function checkSignatureValidity(expectedAddress, signatureHash){
 
 //////////////////////////////////////////////
 app = express();
-app.use(cors());
 app.use(bodyParser.urlencoded({
     extended: true
 }));
 app.use(bodyParser.json());
-app.options('*', cors());
+app.use(cors({
+    origin: ['https://www.jsfiddle.net', 'https://www.google.com/']
+}));
 
 app.get('/', function(req, res) {
     res.send("<style>html {background: black;}</style><h1 style='font-size:60px;color:white;margin:auto;display:block;width:max-content;height:max-content;margin-top:40%;margin-bottom:50%;font-family:Roboto,serif;'>Server</h1>"); //Display the response on the website
