@@ -59,7 +59,8 @@ app.post('/test', async function(req, res) {
 app.post('/auth', async function(req, res) {
     console.log(req.body);
     let response = await checkSignatureValidity(req.body.Signer, req.body.SignatureHash);
-    res.json({Valid:"TEST"});
+    res.setHeader('Content-Type', 'application/json');
+    res.end(JSON.stringify({Valid:response}));
 })
 
 
