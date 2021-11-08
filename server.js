@@ -28,12 +28,24 @@ async function checkSignatureValidity(expectedAddress, signatureHash){
         }
     }
     if (!match){
+        for (let i = 0; i < 21; i++) {
+            const web3 = new Web3;
+            serverStamp -= 1;
+            var verifyMessage = ""+web3.utils.asciiToHex(serverStamp.toString());
+            let recoveredSigner = ethers.utils.verifyMessage(verifyMessage, signatureHash);
+            console.log("recovered", recoveredSigner, expectedAddress);
+            if (recoveredSigner.toLowerCase() == expectedAddress.toLowerCase()) {
+                console.log("Signature is valid");
+                match = true;
+                return true
+            }
+        }
         return false;
     }
 }
 
-
-
+//web3.utils.asciiToHex("1636341189")
+//web3.utils.toAscii("0x31363336333431313839")
 
 //////////////////////////////////////////////
 app = express();
