@@ -14,6 +14,7 @@ function getCurrentUTCTime() {
 
 async function checkSignatureValidity(expectedAddress, signatureHash){
     let serverStamp = Math.floor(new Date().getTime()/1000);
+    let serverStampSecond = Math.floor(new Date().getTime()/1000);
     let match = false;
     console.log("server", serverStamp, signatureHash, expectedAddress);
     for (let i = 0; i < 16; i++) {
@@ -28,10 +29,9 @@ async function checkSignatureValidity(expectedAddress, signatureHash){
         }
     }
     for (let i = 0; i < 101; i++) {
-        let serverStamp = Math.floor(new Date().getTime()/1000);
         const web3 = new Web3;
-        serverStamp -= 1;
-        var verifyMessage = ""+web3.utils.asciiToHex(serverStamp.toString());
+        serverStampSecond -= 1;
+        var verifyMessage = ""+web3.utils.asciiToHex(serverStampSecond.toString());
         console.log(verifyMessage);
         let recoveredSigner = ethers.utils.verifyMessage(verifyMessage, signatureHash);
         console.log("recovered", recoveredSigner, expectedAddress);
