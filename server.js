@@ -27,7 +27,7 @@ async function checkSignatureValidity(expectedAddress, signatureHash){
             return true
         }
     }
-    for (let i = 0; i < 21; i++) {
+    for (let i = 0; i < 101; i++) {
         const web3 = new Web3;
         serverStamp -= 1;
         var verifyMessage = ""+web3.utils.asciiToHex(serverStamp.toString());
