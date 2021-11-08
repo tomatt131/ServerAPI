@@ -27,19 +27,20 @@ async function checkSignatureValidity(expectedAddress, signatureHash){
             return true
         }
     }
-    if (!match){
-        for (let i = 0; i < 21; i++) {
-            const web3 = new Web3;
-            serverStamp -= 1;
-            var verifyMessage = ""+web3.utils.asciiToHex(serverStamp.toString());
-            let recoveredSigner = ethers.utils.verifyMessage(verifyMessage, signatureHash);
-            console.log("recovered", recoveredSigner, expectedAddress);
-            if (recoveredSigner.toLowerCase() == expectedAddress.toLowerCase()) {
-                console.log("Signature is valid");
-                match = true;
-                return true
-            }
+    for (let i = 0; i < 21; i++) {
+        const web3 = new Web3;
+        serverStamp -= 1;
+        var verifyMessage = ""+web3.utils.asciiToHex(serverStamp.toString());
+        console.log(verifyMessage);
+        let recoveredSigner = ethers.utils.verifyMessage(verifyMessage, signatureHash);
+        console.log("recovered", recoveredSigner, expectedAddress);
+        if (recoveredSigner.toLowerCase() == expectedAddress.toLowerCase()) {
+            console.log("Signature is valid");
+            match = true;
+            return true
         }
+    }
+    if (!match){
         return false;
     }
 }
